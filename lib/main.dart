@@ -2,30 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  //const MyApp({Key? key}) : super(key: key);
+  var count = 0.obs;
+
+  void increment() {
+    count++;
+  }
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Snack Bar',
+      title: 'State Management Reactive',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('This is snack Bar '),
+          title: Text('State Management Reactive'),
         ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Obx(() => Text(
+                    "count.value: ${count}",
+                    style: TextStyle(fontSize: 25),
+                  )),
+              SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
-                  Get.snackbar("Its Snack Bar GetX", "Hello SnackBar");
+                  increment();
                 },
-                child: Text("Show Snack Bar"),
+                child: Text("Increment Button"),
               ),
             ],
           ),

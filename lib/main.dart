@@ -18,7 +18,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //var student = Student();
-    final student = Student(name: 'Tarun Singh Chauhan', age: 24).obs;
+    //final student = Student(name: 'Tarun Singh Chauhan', age: 24).obs;
+    //ControllerClassCustom controllerClassCustom = ControllerClassCustom();
+    ControllerClassCustom controllerClassCustom = Get.put(ControllerClassCustom());
 
     return GetMaterialApp(
       title: 'Reactive State Management By GetX Controller',
@@ -32,18 +34,18 @@ class MyApp extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GetX<ControllerClassCustom>(
-                  init: ControllerClassCustom(),
+                  //init: ControllerClassCustom(),
                   builder: (controller) {
-                    return Text(
-                      "The value is ${controller.count}",
-                      style: TextStyle(fontSize: 20),
-                    );
-                  }),
+                return Text(
+                  "The value is ${controller.count}",
+                  style: TextStyle(fontSize: 20),
+                );
+              }),
               SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
-                  Get.find<ControllerClassCustom>().increment();
-
+                  //Get.find<ControllerClassCustom>().increment();
+                  controllerClassCustom.increment();
                   //student.value.name = student.value.name.toLowerCase();
                   // student.update((student) {
                   //   student?.name = student.name.toString().toLowerCase();
@@ -54,7 +56,8 @@ class MyApp extends StatelessWidget {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  Get.find<ControllerClassCustom>().decrement();
+                 // Get.find<ControllerClassCustom>().decrement();
+                  controllerClassCustom.decrement();
 
                   // student.update((student) {
                   //   student?.name = student.name.toString().toUpperCase();

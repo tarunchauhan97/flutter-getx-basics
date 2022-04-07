@@ -33,12 +33,12 @@ class MyApp extends StatelessWidget {
                   style: TextStyle(fontSize: 25),
                 ),
               ),
-              // GetX<Employee>(
-              //   init: Employee(),
-              //   builder: (employee) {
-              //     return Text('--${employee.name}--');
-              //   },
-              // ),
+              GetX<Student>(
+                init: Student(),
+                builder: (employee) {
+                  return Text('--${employee.name}--');
+                },
+              ),
               GetBuilder<ControllerClassCustom>(
                 id: 'Counter',
                 builder: (controller) {

@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx/controller.dart';
 import 'package:get/get.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  Controller controller = Get.put(Controller(), tag: 'Flutter_Coding', permanent: true);
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Snack Bar',
+      title: 'Dependency Injection',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('This is snack Bar '),
+          title: Text('Dependency Injection '),
         ),
         body: Center(
           child: Column(
@@ -23,9 +24,9 @@ class MyApp extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  Get.snackbar("Its Snack Bar GetX", "Hello SnackBar");
+                  Get.find<Controller>(tag: 'Flutter_Coding');
                 },
-                child: Text("Show Snack Bar"),
+                child: Text("Click Here"),
               ),
             ],
           ),

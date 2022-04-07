@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx/app_controller.dart';
 import 'package:flutter_getx/first_controller.dart';
 import 'package:flutter_getx/home.dart';
+import 'package:flutter_getx/home_controller_binding.dart';
 import 'package:flutter_getx/second_controller.dart';
 
 import 'package:get/get.dart';
 
 void main() {
+  AppController().dependencies();
   runApp(MyApp());
 }
 
@@ -15,15 +18,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialBinding: SecondController(),
+      //initialBinding: SecondController(),
       title: 'Binding GetX',
-      // getPages: [
-      //   GetPage(
-      //     name: '/home',
-      //     page: () => Home(),
-      //     //binding: HomeControllerBinding(),
-      //   ),
-      // ],
+      getPages: [
+        GetPage(
+          name: "/home",
+          page: () => Home(),
+          binding: HomeControllerBinding(),
+        ),
+      ],
       home: Scaffold(
         appBar: AppBar(
           title: Text('Binding GetX'),
@@ -44,7 +47,8 @@ class MyApp extends StatelessWidget {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  Get.to(Home());
+                  //Get.to(Home());
+                  Get.toNamed("/home");
                 },
                 child: Text("Home Page Button"),
               ),

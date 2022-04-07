@@ -2,23 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_getx/controller.dart';
 import 'package:get/get.dart';
 
-void main() {
+Future<void> main() async {
+  await initServices();
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  // Controller controller = Get.put(Controller(), tag: 'Flutter_Coding', permanent: true);
+Future<void> initServices() async {
+  print("THis is the Startup Service");
+  await Get.putAsync<Service>(() async => await Service());
+  print("Services are about to start");
+}
 
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //Get.lazyPut(() => Controller(), tag: 'getx', fenix: true);
-    // Get.create(() => Controller());
-    Get.putAsync(() async => await Controller());
+    //Get.putAsync(() async => await Service());
     return GetMaterialApp(
-      title: 'Dependency Injection',
+      title: 'GetX Service',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Dependency Injection '),
+          title: Text('GetX Service'),
         ),
         body: Center(
           child: Column(
@@ -27,12 +30,9 @@ class MyApp extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  // Get.find<Controller>(tag: 'Flutter_Coding');
-                  //Get.find<Controller>(tag: 'getx');
-                  //Get.find<Controller>();
-                  Get.find<Controller>().increment();
+                  Get.find<Service>().increment();
                 },
-                child: Text("Click Here"),
+                child: Text("Increment Button"),
               ),
             ],
           ),

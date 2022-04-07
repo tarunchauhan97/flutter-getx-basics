@@ -20,11 +20,20 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       //initialBinding: SecondController(),
       title: 'Binding GetX',
+      // getPages: [
+      //   GetPage(
+      //     name: "/home",
+      //     page: () => Home(),
+      //     binding: HomeControllerBinding(),
+      //   ),
+      // ],
       getPages: [
         GetPage(
           name: "/home",
           page: () => Home(),
-          binding: HomeControllerBinding(),
+          binding: BindingsBuilder(() => {
+                Get.lazyPut<HomeControllerBinding>(() => HomeControllerBinding()),
+              }),
         ),
       ],
       home: Scaffold(
@@ -48,7 +57,8 @@ class MyApp extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   //Get.to(Home());
-                  Get.toNamed("/home");
+                  //Get.toNamed("/home");
+                  Get.to(Home(), binding: HomeControllerBinding());
                 },
                 child: Text("Home Page Button"),
               ),

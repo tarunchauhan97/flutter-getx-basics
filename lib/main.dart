@@ -12,7 +12,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //Get.lazyPut(() => Controller(), tag: 'getx', fenix: true);
-    Get.create(() => Controller());
+    // Get.create(() => Controller());
+    Get.putAsync(() async => await Controller());
     return GetMaterialApp(
       title: 'Dependency Injection',
       home: Scaffold(
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
                 onPressed: () {
                   // Get.find<Controller>(tag: 'Flutter_Coding');
                   //Get.find<Controller>(tag: 'getx');
-                  Get.find<Controller>();
+                  //Get.find<Controller>();
+                  Get.find<Controller>().increment();
                 },
                 child: Text("Click Here"),
               ),

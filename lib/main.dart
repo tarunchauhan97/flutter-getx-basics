@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getx/controller.dart';
+import 'package:flutter_getx/employee.dart';
+import 'package:flutter_getx/student.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -8,7 +10,10 @@ void main() {
 
 class MyApp extends StatelessWidget {
   ControllerClassCustom controllerClassCustom = Get.put(ControllerClassCustom());
+  final student = Student(name: 'Tarun Singh Chauhan', age: 24).obs;
+  final employee = Employee(name: 'Aditya', age: 17).obs;
 
+  //final employee = Get.put(Employee());
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -22,6 +27,18 @@ class MyApp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Obx(
+                () => Text(
+                  "Name is : ${student.value.name}",
+                  style: TextStyle(fontSize: 25),
+                ),
+              ),
+              // GetX<Employee>(
+              //   init: Employee(),
+              //   builder: (employee) {
+              //     return Text('--${employee.name}--');
+              //   },
+              // ),
               GetBuilder<ControllerClassCustom>(
                 id: 'Counter',
                 builder: (controller) {

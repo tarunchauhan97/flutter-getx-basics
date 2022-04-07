@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
-class ControllerClassCustom extends GetxController {
+class HomeGetx extends GetxController{
+
   var count = 0.obs;
 
   void increment() {
@@ -12,4 +13,5 @@ class ControllerClassCustom extends GetxController {
     count--;
     update();
   }
+
 }

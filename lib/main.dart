@@ -10,7 +10,9 @@ void main() {
 
 class MyApp extends StatelessWidget {
   ControllerClassCustom controllerClassCustom = Get.put(ControllerClassCustom());
-  final student = Student(name: 'Tarun Singh Chauhan', age: 24).obs;
+
+  // final student = Student(name: 'Tarun Singh Chauhan', age: 24).obs;
+  Student student = Get.put(Student());
   final employee = Employee(name: 'Aditya', age: 17).obs;
 
   //final employee = Get.put(Employee());
@@ -27,18 +29,24 @@ class MyApp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Obx(
-                () => Text(
-                  "Name is : ${student.value.name}",
-                  style: TextStyle(fontSize: 25),
-                ),
-              ),
-              GetX<Student>(
-                init: Student(),
-                builder: (employee) {
-                  return Text('--${employee.name}--');
-                },
-              ),
+              // Obx(
+              //   () => Text(
+              //     "Name is : ${student.name}",
+              //     style: TextStyle(fontSize: 25),
+              //   ),
+              // ),
+              // GetX<Student>(
+              //   init: Student(),
+              //   builder: (employee) {
+              //     return Text('--${employee.name}--');
+              //   },
+              // ),
+              GetBuilder<Student>(builder: (student) {
+                return Text(
+                  "Name: ${student.name}",
+                  style: TextStyle(fontSize: 30),
+                );
+              }),
               GetBuilder<ControllerClassCustom>(
                 id: 'Counter',
                 builder: (controller) {

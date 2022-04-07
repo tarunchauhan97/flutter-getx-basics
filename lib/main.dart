@@ -11,7 +11,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(() => Controller());
+    //Get.lazyPut(() => Controller(), tag: 'getx', fenix: true);
+    Get.create(() => Controller());
     return GetMaterialApp(
       title: 'Dependency Injection',
       home: Scaffold(
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   // Get.find<Controller>(tag: 'Flutter_Coding');
+                  //Get.find<Controller>(tag: 'getx');
                   Get.find<Controller>();
                 },
                 child: Text("Click Here"),

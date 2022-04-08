@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getx/controller.dart';
 import 'package:flutter_getx/employee.dart';
+import 'package:flutter_getx/string_name.dart';
 import 'package:flutter_getx/student.dart';
 import 'package:get/get.dart';
 
@@ -10,6 +11,8 @@ void main() {
 
 class MyApp extends StatelessWidget {
   ControllerClassCustom controllerClassCustom = Get.put(ControllerClassCustom());
+
+  //final StringName stringName = Get.put(StringName());
 
   // final student = Student(name: 'Tarun Singh Chauhan', age: 24).obs;
   //Student student = Get.put(Student());
@@ -112,7 +115,7 @@ class MyApp extends StatelessWidget {
                   SizedBox(height: 5),
                   IconButton(
                       onPressed: () {
-                        Get.find<EvenOddNumber>().odd() ;
+                        Get.find<EvenOddNumber>().odd();
                       },
                       icon: Icon(Icons.keyboard_arrow_up)),
                   GetBuilder<EvenOddNumber>(
@@ -120,15 +123,15 @@ class MyApp extends StatelessWidget {
                       builder: (evenoddController) {
                         return Text('Oddc: ${evenoddController.numberOdd}');
                       }),
-                  // GetX<EvenOddNumber>(
-                  //   init: EvenOddNumber(),
-                  //   builder: (evenOddNumber) {
-                  //     return Text(
-                  //       "Odd: ${evenOddNumber.numberOdd}",
-                  //       style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                  //     );
-                  //   },
-                  // ),
+                  GetX<EvenOddNumber>(
+                    init: EvenOddNumber(),
+                    builder: (evenOddNumber) {
+                      return Text(
+                        "Odd: ${evenOddNumber.numberOdd}",
+                        style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                      );
+                    },
+                  ),
                   IconButton(
                       onPressed: () {
                         Get.find<EvenOddNumber>().numberOdd - 2;
@@ -150,18 +153,56 @@ class MyApp extends StatelessWidget {
                     id: 'Counter',
                     builder: (controller) {
                       return Text(
-                        "The Value is : ${controller.count}",
+                        "Value: ${controller.count}",
                         style: TextStyle(fontSize: 20),
                       );
                     },
                   ),
+                  // GetX<ControllerClassCustom>(builder: (controller) {
+                  //   return Text(
+                  //     "Value: ${controller.count}",
+                  //     style: TextStyle(fontSize: 20),
+                  //   );
+                  // }),
                   ElevatedButton(
                     onPressed: () => controllerClassCustom.decrement(),
                     child: Text("--"),
                   ),
                 ],
               ),
-              GetBuilder<ControllerClassCustom>(builder: (controller) {
+              SizedBox(height: 5),
+              Divider(height: 1, thickness: 2, color: Colors.red, indent: 10, endIndent: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      Get.find<StringName>().upperString();
+                    }, //StringName().upperString(),
+                    child: Text("+"),
+                  ),
+                  GetBuilder<StringName>(
+                    init: StringName(),
+                    //tag: 'strName',
+                    builder: (strName) {
+                      return Text(
+                        "StringName: ${strName.name}",
+                        style: TextStyle(fontSize: 20),
+                      );
+                    },
+                  ),
+                  ElevatedButton(
+                    onPressed: () => StringName().lowerString(),
+                    child: Text("--"),
+                  ),
+                ],
+              ),
+              SizedBox(height: 5),
+              Divider(height: 1, thickness: 2, color: Colors.red, indent: 10, endIndent: 10),
+              GetBuilder<ControllerClassCustom>(
+                  //init: ControllerClassCustom(),
+                  builder: (controller) {
                 return Text(
                   "NOID The Value is : ${controller.count}",
                   style: TextStyle(fontSize: 20),

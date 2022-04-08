@@ -4,6 +4,8 @@ class EvenOddNumber extends GetxController {
   var numberEven = 0.obs;
   var numberOdd = 1.obs;
 
+
+
   void even() {
     numberEven = numberEven + 2;
     update();

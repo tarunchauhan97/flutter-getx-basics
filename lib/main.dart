@@ -1,37 +1,21 @@
-import 'dart:io';
-
-import 'package:flutter_getx/commonmodule/AppColor.dart';
-import 'package:flutter_getx/commonmodule/AppString.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'productmodule/views/product_list_view.dart';
+import 'package:flutter_getx/views/screens/home_screen.dart';
 
 void main() {
-  HttpOverrides.global = MyHttpOverrides();
-  runApp(MyApp());
+  runApp(NewsX());
 }
 
-class MyHttpOverrides extends HttpOverrides{
-  @override
-  HttpClient createHttpClient(SecurityContext? context){
-    return super.createHttpClient(context)
-      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
-  }
-}
-
-class MyApp extends StatelessWidget {
+class NewsX extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: AppString.fetchApiData,
-      theme: ThemeData(
-        primarySwatch: AppColor.purpleColor,
-      ),
       debugShowCheckedModeBanner: false,
-      home: ProductListView(),
+      title: 'News X',
+      theme: ThemeData(
+        primaryColor: Colors.white, colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.red,),
+      ),
+      home: HomeScreen(),
     );
   }
 }
-
-
-

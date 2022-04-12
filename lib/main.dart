@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'homepage.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -8,29 +10,16 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Snack Bar',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('This is snack Bar '),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  Get.snackbar("Its Snack Bar GetX", "Hello SnackBar");
-                },
-                child: Text("Show Snack Bar"),
-              ),
-            ],
-          ),
-        ),
+      title: 'Shimmer Effect GetX',
+      theme: ThemeData(
+        primarySwatch: Colors.orange,
       ),
+      home: HomePage(),
     );
   }
 }
+
